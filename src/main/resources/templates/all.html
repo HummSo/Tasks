@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Task List</title>
+    </head>
+    <body>
+        <form th:action="@{/demo/new}" method="get">
+        	<input type="submit" value="Add Task"/>
+        </form><br/><br/>
+        <form action="#" th:action="@{/demo/save}" th:object="${form}" method="post">
+        <fieldset>
+       		<input type="submit" id="saveBtn" th:value="Save"/>
+       		<table>
+       			<thead><tr>
+        			<th>Name</th>
+        			<th>Complete</th>
+        		</tr></thead>
+        		<tbody>
+        			<tr th:if="${form.tasks.empty}">  <!-- *{tasks.empty} -->
+        				<td colspan="2">Empty.</td>
+        			</tr>
+        			<tr th:each="task, is : ${form.tasks}"> <!-- *{tasks}  -->
+        				<td><input type="hidden" th:name="|tasks[${is.index}].id|" 
+        					th:value="${task.getId()}"/></td>
+        				<td><input th:name="|tasks[${is.index}].name|" 
+        					th:value="${task.getName()}"/></td>
+        				<td><input th:name="|tasks[${is.index}].complete|" 
+        					th:value="${task.isComplete()}"/></td>
+        			</tr>
+        		</tbody>
+       		</table>
+        </fieldset>
+        </form>
+    </body>
+    <!-- 
+        <table>
+        	<thead><tr>
+        		<th>Name</th>
+        		<th>Complete</th>
+        	</tr></thead>
+        	<tbody>
+        	<tr th:if="${tasks.empty}">
+        		<td colspan="2">Empty.</td>
+        	</tr>
+        	<tr th:each="task : ${tasks}">
+        		<td th:text="${task.name}"></td>
+        		<td th:text="${task.complete}"></td>
+        	</tr>
+        	</tbody>
+        </table>
+        -->
+</html>

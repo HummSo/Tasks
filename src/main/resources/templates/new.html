@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>New Task</title>
+    </head>
+    <body>
+        <form action="#" th:action="@{/demo/new}" th:object="${task}" method="post">
+       		<input type="submit" id="saveBtn" th:value="Add"/>
+       		<p>Task Name: <input th:field="*{name}"/></p>
+			<!-- <p>Status: <input th:field="*{complete}"/></p> -->
+        	<p>Status: 
+        		<input type="radio" id="op1" value="false" th:field="*{complete}"/>
+        		In-progress
+        		<input type="radio" id="op2" value="true" th:field="*{complete}"/>
+        		Complete
+        	</p>
+        </form>
+    </body>
+</html>
