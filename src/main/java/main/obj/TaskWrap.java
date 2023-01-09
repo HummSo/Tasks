@@ -26,5 +26,4 @@ public class TaskWrap {
 	public void setTasks(List<Task> tasks) {
 		this.tasks = tasks;
 	}
-
 }
